@@ -111,6 +111,7 @@ function edit() {
         console.log("Can't find")
     } else {
         console.log(find)
+        console.log("New product: ")
         let name = input.question("Enter product name: ")
         let price = +input.question("Enter product price: ")
         let number = +input.question("Enter product number: ")
