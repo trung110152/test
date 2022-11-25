@@ -7,35 +7,43 @@ export class ProductManager {
         this.listProduct.push(product)
     }
 
-   showList(): Product[]{
+    showList(): Product[]{
         return this.listProduct
     }
 
-    findName(name: string):Product[]{
-        return this.listProduct.slice().filter(obj => obj.name.includes(name) )
+    findName(name: string): Product[]{
+        return this.listProduct.filter(obj => obj.name.includes(name) )
     }
 
-    findType(type: string):Product[]{
-        return this.listProduct.slice().filter(obj => obj.name.includes(type) )
+    findType(type: string): Product[]{
+        return this.listProduct.filter(obj => obj.type.includes(type) )
     }
 
-    findPrice(number1: number, number2: number):Product[]{
-        return this.listProduct.slice().filter(obj => (number1 <=obj.price && obj.price< number2) )
+    findPrice(min: number, max: number):Product[]{
+        return this.listProduct.filter(obj => (min <=obj.price && obj.price< max) )
     }
 
-    sortPriceSlow(){
-        return this.listProduct.sort((p1,p2) => p1.price - p2.price)
+    sortPriceAsc(): Product[]{
+        return this.listProduct.slice().sort((p1,p2) => p1.price - p2.price)
     }
 
-    sortPriceHeight(){
-        return this.listProduct.sort((p1,p2) => p2.price - p1.price)
+    sortPriceDesc(): Product[]{
+        return this.listProduct.slice().sort((p1,p2) => p2.price - p1.price)
     }
 
-    sortNumberHeight(){
-        return this.listProduct.sort((p1,p2) => p2.number - p1.number)
+    sortNumberDesc(): Product[]{
+        return this.listProduct.slice().sort((p1,p2) => p2.number - p1.number)
     }
 
-    remove(name: string): void {
+    removeProduct(name: string): void {
+        let a = this.listProduct.filter(obj => obj.name == name)
+        let index = this.listProduct.indexOf(a[0])
+        this.listProduct.splice(index,1)
+    }
 
+    editProduct(name: string, newProduct: Product){
+        let a = this.listProduct.filter(obj => obj.name == name)
+        let index = this.listProduct.indexOf(a[0])
+        this.listProduct[index] = newProduct
     }
 }
